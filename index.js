@@ -12,14 +12,18 @@ Connection();
 // Middleware
 App.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://basdded.netlify.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific methods
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 App.use(express.json());
 App.use(express.urlencoded({ extended: true }));
+
+// Handle Preflight Requests
+App.options("*", cors());
 
 // Default Route
 App.use("/auth", router);
