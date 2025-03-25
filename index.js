@@ -12,9 +12,9 @@ Connection();
 // Middleware
 App.use(
   cors({
-    origin: ["http://localhost:5173", "https://basdded.netlify.app"],
+    origin: ["http://localhost:5173", "https://blogelevate.netlify.app"], // ✅ Corrected origin
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific methods
+    methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
@@ -22,10 +22,7 @@ App.use(
 App.use(express.json());
 App.use(express.urlencoded({ extended: true }));
 
-// Handle Preflight Requests
-App.options("*", cors());
-
-// Default Route
+// Routes
 App.use("/auth", router);
 
 App.get("/", (req, res) => {
